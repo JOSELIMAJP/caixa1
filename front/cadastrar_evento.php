@@ -1,3 +1,43 @@
+<?php 
+// Inicia a sessão
+session_start();
+//limpa seção
+//$_SESSION_unset();
+//destroi sessão
+//$_SESSION_destroy();
+
+$_SESSION['usuario'];
+
+// Verifica se existe os dados da sessão de login
+if(!isset($_SESSION["usuario"]))
+{
+// Usuário não logado! Redireciona para a página de login
+
+//Função para redirecionar a página para o link
+function redireciona($link){
+     if ($link==-1){
+     echo" <script>history.go(-1);</script>";
+     }else{
+     echo" <script>document.location.href='$link'</script>";
+     }
+ };
+//Cria uma variavel
+$link = 'index.php';
+
+//chama a funcao
+redireciona($link); 
+/*
+header("Location: login.html");
+exit;
+
+*/
+}
+
+
+// Mostra uma frase na tela
+//echo 'Olá ' . $_SESSION['usuario'];
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -32,19 +72,19 @@ function valida(){
   </head>
   <body>
   <nav>
-      <div class="logo">CAIXA1 </div>
+      <div class="logo">CAIXA1 - <?php echo 'Olá ' .$_SESSION['usuario'];?></div>
       <input type="checkbox" id="click">
       <label for="click" class="menu-btn">
         <i class="fas fa-bars"></i>
       </label>
       <ul>
-        <li><a class="active" href="pag_inicial2.php">Inicio</a></li>
+        <li><a class="active" href="index2.php">Inicio</a></li>
         <li><a href="movimentos_lancar.php">Lançar Movimento</a></li>
         <li><a href="movimentos_list.php">Movimentos</a></li>
-        <li><a href="movimentos_list.php">Resumo</a></li>
+        <li><a href="movimentos_list_resumo.php">Resumo</a></li>
         <li><a href="cadastrar_evento.php">Cadastro eventos</a></li>
         <li><a href="cadastrar_usuario.php">Cadastro usuarios</a></li>
-        <li><a href="#">Sair</a></li>
+        <li><a href="index.php">Sair</a></li>
       </ul>
     </nav>
     <div class="content">
