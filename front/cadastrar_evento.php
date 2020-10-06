@@ -7,12 +7,25 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script language="javascript">
 function valida(){
-   var campo = document.getElementById("valor");
-   if(campo.value == ""){
-       alert("Campo valor obrigatorio!");
+   var campo1 = document.getElementById("evento");
+   var campo2 = document.getElementById("tipo");
+   
+   if(campo1.value  == ""){
+       alert("Descriação obrigatoria!");
        return false;
    } 
+  
    return true;
+   
+         if(campo2.value  == ""){
+       alert("Tipo obrigatorio!");
+       return false;
+   } 
+   
+   
+     return true;
+   
+   
 }
 </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +42,8 @@ function valida(){
         <li><a href="movimentos_lancar.php">Lançar Movimento</a></li>
         <li><a href="movimentos_list.php">Movimentos</a></li>
         <li><a href="movimentos_list.php">Resumo</a></li>
-        <li><a href="#">Cadastro eventos</a></li>
-        <li><a href="#">Cadastro usuarios</a></li>
+        <li><a href="cadastrar_evento.php">Cadastro eventos</a></li>
+        <li><a href="cadastrar_usuario.php">Cadastro usuarios</a></li>
         <li><a href="#">Sair</a></li>
       </ul>
     </nav>
@@ -39,14 +52,19 @@ function valida(){
       
           <br>
           <br>
-        <p>Registrar  movimento</p>
+        <p>Registrar evento</p>
         <p>&nbsp;</p>
-        <p><?php 	
+        <p>
+       
+        
+        <?php 	
+         /*
 		define('HOST', 'localhost');
 		define('USUARIO', 'id11247117_root2');
 		define('SENHA', '<K8%HJ>!(6ufopEY');
 		define('DB', 'id11247117_sisfinanceiro');
-
+*/
+/*
 		$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
          
         $sql = mysqli_query($conexao,"SELECT SUM(movimentos_db-movimentos_cr) as Saldo FROM movimentos_saldo where `movimentos_evento`like('Caixa%')");
@@ -68,70 +86,30 @@ function valida(){
        echo "Saldo Banco: ".$vr2 = number_format($vr2, 2, '.', '')."<br>";
     }
     
-    
+    */
     
          ?></p>
-        <p>&nbsp;</p>
-        <p>Saldo Banco:</p> 
-        
-     
-        
-        <form name="form1" method="post" onsubmit="return valida()" action="movimentos_registrar2.php">
-          <BR>
-          <p>Data:</p>
-          <p>
+        <form name="form1" method="post" onsubmit="return valida()" action="cadastro_evento_registrar.php">
+          
   <label for="textfield"></label>
-            <input type="daje" name="data" id="textfield" value="<?php $hoje = date('d/m/Y');
-echo $hoje;?>">
           </p>
-          <BR>
-          <p>Entrada:</p>
-          <p>
-  <select name="debito" >
-		 <?php 	
-		define('HOST', 'localhost');
-		define('USUARIO', 'id11247117_root2');
-		define('SENHA', '<K8%HJ>!(6ufopEY');
-		define('DB', 'id11247117_sisfinanceiro');
-
-		$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
-         
-        $sql = mysqli_query($conexao,"SELECT * FROM `evento` WHERE evento_id>0 order by evento_tipo asc" ) or die("Erro");
-        
-        while($dados=mysqli_fetch_assoc($sql))
-    {
-       echo '<option>'.$dados['evento_tipo']."-".$dados['evento_nome']."<br>".'</option>';
-    }
-        
-		?>
-  </select>
           </p>
-          <BR>
-          <p>Saida</p>
- 
+          <p>Descrição:</p>
           <p>
-            <select name="credito">
-		 <?php 	
-		define('HOST', 'localhost');
-		define('USUARIO', 'id11247117_root2');
-		define('SENHA', '<K8%HJ>!(6ufopEY');
-		define('DB', 'id11247117_sisfinanceiro');
-
-		$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
-         
-        $sql = mysqli_query($conexao,"SELECT * FROM `evento` WHERE evento_id>0 order by evento_tipo asc" ) or die("Erro");
-        
-        while($dados=mysqli_fetch_assoc($sql))
-    {
-       echo '<option>'.$dados['evento_tipo']."-".$dados['evento_nome']."<br>".'</option>';
-    }
-		?>
+  <input type="text" inputmode="decimal" name="evento" id="evento">
+          </p>
+          <p>Tipo:</p>
+          <p>
+            <label for="tipo"></label>
+            <select name="tipo" id="tipo">
+              <option>Banco</option>
+              <option>Caixa</option>
+              <option>Receita</option>
+              <option>Despesa</option>
+              <option>Investimento</option>
+              <option>Outros</option>
+              <option>Cartao</option>
             </select>
-                      </p>
-          <BR>
-          <p>Valor:</p>
-          <p>
-  <input type="text" inputmode="decimal" name="valor" id="valor">
           </p>
           <BR>
           <p>observação:</p>
@@ -140,10 +118,45 @@ echo $hoje;?>">
           </p>
           <p>&nbsp;</p>
           <p>
-            <input type="submit" value="Lançar"/>
+            <input type="submit" value="Cadastrar"/>
           </p>
         </form>
         <p>&nbsp;</p>
+        
+        <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+ <thead>
+  <tr>
+   <th>Evento</th>
+   <th>Tipo</th>
+   <th>Observação</th>
+   <th>Alterar</th>
+   <th>Deletar</th>
+  </tr>
+ </thead>
+ <tbody>
+  <?php
+include("../conexao.php");
+
+$Show = mysqli_query($conexao, "SELECT * FROM evento");
+while($r = mysqli_fetch_array($Show)): ?>
+
+
+    <tr>
+     <td><?php echo $r['evento_nome']; ?></td>
+     <td><?php echo $r['evento_tipo']; ?></td>
+     <td><?php echo $r['observacao']; ?></td>
+     <td><p><a href="cadastro_evento_alterar.php?update_id=<?php echo $r['evento_id']; ?>" class="btn btn-warning">
+       
+       <img src="../icons/add.png" width="20" height="20" /></a></p></td>
+     <td><a href="cadastro_evento_delete.php?delete_id=<?php echo $r['evento_id']; ?>" class="btn btn-danger">
+  
+      <img src="../icons/delete.png" width="20" height="20" /></a></td>
+    </tr>
+    <?php endwhile; ?>
+ </tbody>
+ </table>
+        
+        
       </div>
     </div>
   </body>

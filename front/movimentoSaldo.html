@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Caixa1 - Gestao Financeira</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script language="javascript">
+function valida(){
+   var campo = document.getElementById("valor");
+   if(campo.value == ""){
+       alert("Campo valor obrigatorio!");
+       return false;
+   } 
+   return true;
+}
+</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  <nav>
+      <div class="logo">CAIXA1 </div>
+      <input type="checkbox" id="click">
+      <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <ul>
+        <li><a class="active" href="pag_inicial2.php">Inicio</a></li>
+        <li><a href="movimentos_lancar.php">Lançar Movimento</a></li>
+        <li><a href="movimentos_list.php">Movimentos</a></li>
+        <li><a href="#">Cadastro eventos</a></li>
+        <li><a href="#">Cadastro usuarios</a></li>
+        <li><a href="#">Sair</a></li>
+      </ul>
+    </nav>
+    
+    <form>
+  <div class="">  
+<label for="exampleFormControlSelect1">Seleciione um evento</label>
+<select class="form-control" id="exampleFormControlSelect1">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+</select>
+    <label for="dataInicial"></label>
+    <input type="date" class="form-control" id="dataInicial" aria-describedby="emailHelp" placeholder="data inicial">
+    <small id="emailHelp" class="form-text text-muted"></small>
+    <label for="dataFinal"></label>
+    <input type="date" class="form-control" id="dataFinal" placeholder="data final">
+  </div>
+  <button type="submit" class="btn-primary btn-lg btn-block">Gerar</button>
+</form>
+<div class="alert alert-warning" role="alert">Saldo: 100,00<a href="#" class="alert-warning"></a></div>
+<div>
+    
+    
+    
+    
+    <div class="content">
+      <div>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Data</th>
+<th scope="col">Evento</th>
+<th scope="col">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">1</th>
+<td>Mark</td>
+<td>@mdo</td>
+</tr>
+<tr>
+<th scope="row">2</th>
+<td>Jacob</td>
+<td>@fat</td>
+</tr>
+<tr>
+<th scope="row">3</th>
+<td>Larry</td>
+<td>@twitter</td>
+</tr>
+<tr>
+<th scope="row">3</th>
+<td>Larry</td>
+<td>@twitter</td>
+</tr>
+<tr>
+<th scope="row">3</th>
+<td>Larry</td>
+<td>@twitter</td>
+</tr>
+<tr>
+</tbody>
+</table>
+      </div>
+    </div>
+  </body>
+</html>

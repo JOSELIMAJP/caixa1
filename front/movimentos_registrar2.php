@@ -62,12 +62,20 @@ echo date('Y-m-d', strtotime($data));
 
 $data = date("Y-m-d",strtotime(str_replace('/','-',$data)));  
 //echo date('Y-m-d', strtotime($data));
+
+/*
     
-    
-    
-    
- 
-    $query = "insert into movimentos (movimentos_id,movimentos_data,movimentos_evento_d,movimentos_evento_c,movimentos_db,movimentos_cr,movimentos_obs) values (null,'$data','$debito','$credito','$valor','0.00','$observacao')";
+    insert into movimentos_saldo (
+movimentos_id,
+movimentos_data,
+movimentos_evento,
+movimentos_db,
+movimentos_cr,
+movimentos_obs)
+values (11111,'2020-10-03','evento1','10.00','0.00','observacao'),(11111,'2020-10-03','evento2','0.00','10.00','observacao')
+   */ 
+   
+    $query = "insert into movimentos_saldo (movimentos_id,movimentos_data,movimentos_evento,movimentos_db,movimentos_cr,movimentos_obs) values (null,'$data','$debito','$valor','0.00','$observacao'),(null,'$data','$credito','0.00','$valor','$observacao')";
 
     mysqli_query($conexao, $query);
     

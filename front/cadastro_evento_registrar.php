@@ -41,11 +41,22 @@ include("../conexao.php");
     */
     
     
-    $data = $_POST["data"];
-    $debito = $_POST["debito"];
-    $credito = $_POST["credito"]; 
-    $valor = $_POST["valor"];
+    $evento = $_POST["evento"];
+    $tipo = $_POST["tipo"];
     $observacao = $_POST["observacao"];
+    
+    /*
+    echo ($evento)."<BR>";
+        echo ($tipo)."<BR>";
+         echo ($observacao)."<BR>";   
+         
+         */
+             $query = "insert into evento (evento_id,evento_nome,evento_tipo,observacao) values (NULL,'$evento','$tipo','$observacao')";
+
+    mysqli_query($conexao, $query);
+         
+         
+         
     
     /*
     
@@ -55,7 +66,7 @@ echo date('d-m-Y', strtotime($data));
 $data = date("Y-m-d",strtotime(str_replace('/','-',$data)));  
 echo date('Y-m-d', strtotime($data));
     
-    */
+    
     
     $data = $_POST['data'];
 //echo date('d-m-Y', strtotime($data));
@@ -67,11 +78,9 @@ $data = date("Y-m-d",strtotime(str_replace('/','-',$data)));
     
     
  
-    $query = "insert into movimentos (movimentos_id,movimentos_data,movimentos_evento_d,movimentos_evento_c,movimentos_db,movimentos_cr,movimentos_obs) values (null,'$data','$debito','$credito','$valor','0.00','$observacao')";
 
-    mysqli_query($conexao, $query);
     
-
+*/
 /*
 	
 movimentos_id
@@ -95,7 +104,7 @@ function redireciona($link){
      }
  };
 //Cria uma variavel
-$link = 'movimentos_lancar.php';
+$link = 'cadastrar_evento.php';
 
 //E aonde quiser chama a função dentro de um if ou qualquer coisa.
 

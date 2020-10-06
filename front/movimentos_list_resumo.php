@@ -37,45 +37,33 @@ function valida(){
       <div>
           <br>
           <br>
-        <p>movimentos</p>
+        <p>Movimentos - resumo saldo por evento</p>
         <p>&nbsp;</p>
  
  
- <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+ <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0" text-align:right>
  <thead>
   <tr>
-   <th>data</th>
-   <th>debito</th>
-   <th>credito</th>
-   <th>valor</th>
-   <th>Update</th>
-   <th>Delete</th>
-  </tr>
+   <th width="63%">Evento</th>
+   <th width="37%">Saldo</th>
+   </tr>
  </thead>
  <tbody>
   <?php
 include("../conexao.php");
 
-$Show = mysqli_query($conexao, "SELECT * FROM movimentos");
+$Show = mysqli_query($conexao, "SELECT `movimentos_evento` as evento, SUM(movimentos_db-movimentos_cr) as saldo FROM movimentos_saldo group by `movimentos_evento`");
 while($r = mysqli_fetch_array($Show)): ?>
 
 
+
     <tr>
-     <td><?php echo $r['movimentos_data']; ?></td>
-     <td><?php echo $r['movimentos_evento_d']; ?></td>
-     <td><?php echo $r['movimentos_evento_c']; ?></td>
-     <td><?php echo $r['movimentos_db']; ?></td>
-     <td><p><a href="update.php?update_id=<?php echo $r['movimentos_id']; ?>" class="btn btn-warning">
-   
-      <img src="../icons/add.png" width="20" height="20" /></a></p></td>
-     <td><a href="movimentos_delete.php?delete_id=<?php echo $r['movimentos_id']; ?>" class="btn btn-danger">
-  
-      <img src="../icons/delete.png" width="20" height="20" /></a></td>
-    </tr>
+     <td><?php echo $r['evento']; ?></td>
+     <td><?php echo $vr1 = number_format(($r['saldo']), 2, '.', ''); ?></td>
+     </tr>
     <?php endwhile; ?>
  </tbody>
  </table>
- 
  
         <p>&nbsp;</p>
       </div>
