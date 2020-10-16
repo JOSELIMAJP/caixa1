@@ -73,7 +73,7 @@ function valida(){
   </head>
   <body>
   <nav>
-      <div class="logo">CAIXA1 usuario: <?php echo 'Olá ' .$_session ['usuario'];?> </div>
+      <div class="logo">CAIXA1 usuario: <?php echo 'Olá ' .$_SESSION['usuario'];?> </div>
       <input type="checkbox" id="click">
       <label for="click" class="menu-btn">
         <i class="fas fa-bars"></i>
@@ -124,7 +124,7 @@ function valida(){
           
           <p>Descrição:</p>
           <p>
-  <input type="text" inputmode="decimal" name="evento" id="evento" value="<?php echo $r['evento_nome']; ?>">
+  <input type="text" inputmode="" name="evento" id="evento" value="<?php echo $r['evento_nome']; ?>">
           </p>
           <p>Tipo:</p>
           <p>

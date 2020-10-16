@@ -93,7 +93,7 @@ function valida(){
   <?php
 include("../conexao.php");
 
-$Show = mysqli_query($conexao, "SELECT `movimentos_evento` as evento, SUM(movimentos_db-movimentos_cr) as saldo FROM movimentos_saldo group by `movimentos_evento`");
+$Show = mysqli_query($conexao, "SELECT `movimentos_evento` as evento, SUM(movimentos_db-movimentos_cr) as saldo FROM movimentos_saldo group by `movimentos_evento` order by saldo desc");
 while($r = mysqli_fetch_array($Show)): ?>
 
 

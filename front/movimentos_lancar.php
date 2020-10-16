@@ -125,7 +125,7 @@ function valida(){
 echo $hoje;?>">
           </p>
           <BR>
-          <p>Entrada:</p>
+          <p>Entrada/credito/a receber:</p>
           <p>
   <select name="debito" >
 		 <?php 	
@@ -147,7 +147,7 @@ echo $hoje;?>">
   </select>
           </p>
           <BR>
-          <p>Saida</p>
+          <p>Saida/debito/a pagar:</p>
  
           <p>
             <select name="credito">

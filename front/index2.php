@@ -28,12 +28,12 @@ function valida(){
         <i class="fas fa-bars"></i>
       </label>
       <ul>
-        <li><a class="active" href="pag_inicial2.php">Inicio</a></li>
+        <li><a class="active" href="index2.php">Inicio</a></li>
         <li><a href="movimentos_lancar.php">Lançar Movimento</a></li>
         <li><a href="movimentos_list.php">Movimentos</a></li>
         <li><a href="movimentos_list.php">Resumo</a></li>
-        <li><a href="#">Cadastro eventos</a></li>
-        <li><a href="#">Cadastro usuarios</a></li>
+        <li><a href="cadastrar_evento.php">Cadastro eventos</a></li>
+        <li><a href="cadastro_usuario.php">Cadastro usuarios</a></li>
         <li><a href="index.php">Sair</a></li>
       </ul>
     </nav>

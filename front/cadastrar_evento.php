@@ -83,7 +83,7 @@ function valida(){
         <li><a href="movimentos_list.php">Movimentos</a></li>
         <li><a href="movimentos_list_resumo.php">Resumo</a></li>
         <li><a href="cadastrar_evento.php">Cadastro eventos</a></li>
-        <li><a href="cadastrar_usuario.php">Cadastro usuarios</a></li>
+        <li><a href="cadastro_usuario.php">Cadastro usuarios</a></li>
         <li><a href="index.php">Sair</a></li>
       </ul>
     </nav>
@@ -136,7 +136,7 @@ function valida(){
           </p>
           <p>Descrição:</p>
           <p>
-  <input type="text" inputmode="decimal" name="evento" id="evento">
+  <input type="text" inputmode="" name="evento" id="evento">
           </p>
           <p>Tipo:</p>
           <p>
@@ -144,11 +144,12 @@ function valida(){
             <select name="tipo" id="tipo">
               <option>Banco</option>
               <option>Caixa</option>
-              <option>Receita</option>
+              <option>Cartao</option>
               <option>Despesa</option>
+              <option>Receita</option>
               <option>Investimento</option>
               <option>Outros</option>
-              <option>Cartao</option>
+              
             </select>
           </p>
           <BR>
