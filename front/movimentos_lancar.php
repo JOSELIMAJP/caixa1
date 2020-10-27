@@ -14,6 +14,7 @@ if(!isset($_SESSION["usuario"]))
 // Usuário não logado! Redireciona para a página de login
 
 //Função para redirecionar a página para o link
+/*
 function redireciona($link){
      if ($link==-1){
      echo" <script>history.go(-1);</script>";
@@ -21,6 +22,7 @@ function redireciona($link){
      echo" <script>document.location.href='$link'</script>";
      }
  };
+ */
 //Cria uma variavel
 $link = 'index.php';
 
@@ -41,23 +43,43 @@ exit;
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+      
     <meta charset="utf-8">
     <title>Caixa1 - Gestao Financeira</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script language="javascript">
-function valida(){
-   var campo = document.getElementById("valor");
-   if(campo.value == ""){
-       alert("Campo valor obrigatorio!");
-       return false;
-   } 
-   return true;
+    
+  <script language="javascript">
+  
+  function valida(){
+  var valor = document.getElementById("valor");//ok
+  var caixa = document.getElementById("credito");//ok
+  var sdCaixa = document.getElementById("saldoCaixa").text;//
+
+    if(sdCaixa<=0 && caixa.value== "Caixa-Dinheiro"){ 
+      alert("Não existe saldo em caixa");    
+      return false;     
 }
-</script>
+      if(valor.value<=0){ 
+       alert("não é possivel lançar valor 0 ou negativo");        
+       return false;   
+}
+      if(valor.value ==""){ 
+       alert("valor é obrigatorio");        
+       return false;   
+}
+        if((caixa.value== "Caixa-Dinheiro") && (sdCaixa<valor.value))
+{ 
+       alert("Saldo insuficiente");        
+       return false;   
+}
+}
+  </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+      
   <nav>
       <div class="logo">CAIXA1 - <?php echo 'Olá ' .$_SESSION['usuario']; ?> </div>
       <input type="checkbox" id="click">
@@ -76,6 +98,8 @@ function valida(){
     </nav>
     <div class="content">
       <div>
+          
+
       
           <br>
           <br>
@@ -86,6 +110,9 @@ function valida(){
 		define('USUARIO', 'id11247117_root2');
 		define('SENHA', '<K8%HJ>!(6ufopEY');
 		define('DB', 'id11247117_sisfinanceiro');
+		
+		
+		
 
 		$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
          
@@ -95,7 +122,7 @@ function valida(){
     {
  $vr1= $dados['Saldo'];
         
-       echo "Saldo Caixa: ".$vr1 = number_format($vr1, 2, '.', '')."<br>";
+       echo "Saldo Caixa: "."<a id=saldoCaixa>".$vr1 = number_format($vr1, 2, '.', '')."<a>"."<br>";
     }
     
             $sql = mysqli_query($conexao,"SELECT SUM(movimentos_db-movimentos_cr) as Saldo FROM movimentos_saldo where `movimentos_evento`like('Banco%')");
@@ -112,7 +139,7 @@ function valida(){
     
          ?></p>
         <p>&nbsp;</p>
-        <p>Saldo Banco:</p> 
+        <p id="teste">Saldo Banco:</p> 
         
      
         
@@ -133,6 +160,8 @@ echo $hoje;?>">
 		define('USUARIO', 'id11247117_root2');
 		define('SENHA', '<K8%HJ>!(6ufopEY');
 		define('DB', 'id11247117_sisfinanceiro');
+		
+		echo $vr1;
 
 		$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
          
@@ -150,7 +179,7 @@ echo $hoje;?>">
           <p>Saida/debito/a pagar:</p>
  
           <p>
-            <select name="credito">
+            <select name="credito" id="credito">
 		 <?php 	
 		define('HOST', 'localhost');
 		define('USUARIO', 'id11247117_root2');
@@ -184,6 +213,9 @@ echo $hoje;?>">
           </p>
         </form>
         <p>&nbsp;</p>
+        
+             
+        
       </div>
     </div>
   </body>
